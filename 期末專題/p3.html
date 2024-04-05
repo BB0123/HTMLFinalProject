@@ -1,0 +1,340 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>成語拼字遊戲-PUZZLE</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> 
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+	button{
+		border-radius:10%;
+	}
+</style>
+<script>
+var ans=['f','r','o','g','b','s','n','a','i','l','u','o','t','n','w','t','r','e','e','m','e','e','s','q','u','i','r','r','e','l','r','t','s','a','e','f','h','b','e','a','r','l','a','c','o','r','n','b','f','y','o','i','o','t','m'];
+var ida='a';
+var timer;
+var sec=localStorage.getItem("alltime");
+
+
+function time(){
+	timer=window.setInterval("st()",1000);
+}
+
+function st(){
+	sec++;
+	document.getElementById("cnt").innerHTML=sec;
+	localStorage.setItem("alltime",sec);
+}
+
+function check(){
+	var count=0;
+	for(var i = 0;i<ans.length;i++){
+		if(document.getElementById(ida+i).value==ans[i]){
+		document.getElementById(ida+i).style.color='green';
+			document.getElementById(ida+i).disabled=true;
+			count++;
+		}
+		else{
+			document.getElementById(ida+i).style.color='red';
+		}
+	}
+	if (count == 55){
+		document.getElementById('op').style.color='purple';
+		document.getElementById('op').style.fontSize=Number(50);
+		document.getElementById('op').innerHTML='恭喜全部答對~!';
+	}
+	else{
+		document.getElementById('op').style.color='red';
+		document.getElementById('op').style.fontSize=Number(50);
+		document.getElementById('op').innerHTML='有些地方有錯哦，再試試看';
+	}
+}
+
+function reset(){
+	for(var i = 0;i<ans.length;i++){
+		document.getElementById(ida+i).value='';
+		document.getElementById(ida+i).style.color='black';
+		document.getElementById(ida+i).disabled=false;
+	}
+	document.getElementById('op').innerHTML='';
+	
+}
+
+function show(){
+	document.getElementById('voc').style.fontSize=Number(25);
+	document.getElementById('voc').style.color='navy';
+	document.getElementById('voc').innerHTML='Acorn,Bear,Butterfly,Flower,Frog,Leaf,Mushroom,Nest,Rabbit,Snail,Squirrel,Tree';
+}
+
+function hide(){
+	document.getElementById('voc').innerHTML='';
+}
+
+function lazy(){
+	for(var i = 0;i<ans.length;i++){
+		document.getElementById(ida+i).value=ans[i];
+	}
+}
+
+</script>
+
+<body bgcolor = "#E8FFF5" onload="time();">
+<nav class="navbar navbar-expand-lg navbar-light" style="background:#ACD6FF">
+	  <a class="navbar-brand" href="p1.html"><b>成語拼字遊戲</b></a>
+	  <button class="navbar-toggler" type="button" 
+	          data-toggle="collapse" data-target="#navbarNavDropdown" 
+	          aria-controls="navbarNavDropdown" aria-expanded="false" 
+			  aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		  <li class="nav-item active">
+			<a class="nav-link" href="p1.html">首頁<span class="sr-only">(current)</span></a>
+		  </li>		  
+		  <li>
+			<a class="nav-link" href="p2.html">字字珠璣</a>
+		  </li>
+		  <li>
+			<a class="nav-link" href="p3.html">PUZZLE</a>
+		  </li>	
+		  <li>
+			<a class="nav-link" href="p4.html">找單字</a>
+		  </li>	
+		  <li>
+			<a class="nav-link" href="p5.html">字母拼字</a>
+		  </li>	
+		</ul>			
+	  </div>
+</nav>
+<center>
+<font color = "#0000C6" size="7"><b>PUZZLE</b></font><hr>
+<table border=1 >
+<tr>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td>1.↓→<input type=txt id='a0' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"></td>
+ <td><input type=txt id='a1' size=6 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a2' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a3' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+</tr>
+<tr>
+ <td>2.↓<input type=txt id='a4' size=2 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td>3.→<input type=txt id='a5' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"</td>
+ <td><input type=txt id='a6' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a7' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a8' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a9' size=7 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+</tr>
+<tr>
+ <td><input type=txt id='a10' size=5 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a11' size=7 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+</tr>
+<tr>
+ <td><input type=txt id='a12' size=5 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td>4.↓<input type=txt id='a13' size=2 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a14' size=7 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+</tr>
+<tr>
+ <td>5.→<input type=txt id='a15' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"></td>
+ <td><input type=txt id='a16' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a17' size=6 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a18' size=5 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td>6.↓<input type=txt id='a19' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a20' size=7 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+</tr>
+<tr>
+ <td><input type=txt id='a21' size=5 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td>7.→<input type=txt id='a22' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"></td>
+ <td><input type=txt id='a23' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a24' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a25' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a26' size=7 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td>8.↓<input type=txt id='a27' size=3 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"></td>
+ <td><input type=txt id='a28' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td>9.↓<input type=txt id='a29' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"></td>
+ <td bgcolor='#004B97'></td>
+</tr>
+<tr>
+ <td><input type=txt id='a30' size=5 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a31' size=5 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a32' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a33' size=6 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a34' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+</tr>
+<tr>
+ <td><input type=txt id='a35' size=5 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a36' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td>10.→<input type=txt id='a37' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"></td>
+ <td><input type=txt id='a38' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a39' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a40' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+</tr>
+<tr>
+ <td><input type=txt id='a41' size=5 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td>11.→<input type=txt id='a42' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();"></td>
+ <td><input type=txt id='a43' size=5 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a44' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a45' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td><input type=txt id='a46' size=1 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a47' size=6 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a48' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+</tr>
+<tr>
+ <td><input type=txt id='a49' size=5 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a50' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a51' size=6 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+</tr>
+<tr>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a52' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a53' size=6 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+</tr>
+<tr>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td><input type=txt id='a54' size=4 maxlength="1" onkeyup="this.value = this.value.toLowerCase();" style="text-align:center"></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+ <td bgcolor='#004B97'></td>
+</tr></table>
+<button onclick="check();">檢查答案</button>
+<button onclick="show();">詞庫</button>
+<button onclick="hide();">隱藏詞庫</button>
+<button onclick="lazy();">偷懶</button>
+<button onclick="reset();">重置</button><br>
+<span id=voc></span>
+<br>
+<span id=op></span>
+<table border=1>
+<tr>
+<td>1.→</td>
+<td><img src='1.jpg' width=200></td>
+<td>1.↓</td>
+<td><img src='1d.jpg' width=200></td>
+<td>2.</td>
+<td><img src='2.jpg' width=200></td>
+<td>3.</td>
+<td><img src='3.jpg' width=200></td>
+
+</tr>
+<tr>
+<td>4.</td>
+<td><img src='4.jpg' width=200></td>
+<td>5.</td>
+<td><img src='5.jpg' width=200></td>
+<td>6.</td>
+<td><img src='6.jpg' width=200></td>
+<td>7.</td>
+<td><img src='7.jpg' width=200></td>
+</tr>
+<tr>
+<td>8.</td>
+<td><img src='8.jpg' width=200></td>
+<td>9.</td>
+<td><img src='9.jpg' width=200></td>
+<td>10.</td>
+<td><img src='10.jpg' width=200></td>
+<td>11.</td>
+<td><img src='11.jpg' width=200></td>
+
+</tr>
+</table>
+
+</center>
+<br>
+<center>
+<p>時間:<span id='cnt'></span>秒</p>
+<br><br>
+
+<a href="p1.html">回到首頁</a></center><br>
+
+
+</body>
+</html>

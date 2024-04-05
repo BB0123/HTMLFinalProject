@@ -1,0 +1,319 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>成語拼字遊戲-字字珠璣</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> 
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+	button{
+		border-radius:10%;
+	}
+</style>
+<script>
+var q1=["over","bend","game","time","here"];
+var q2=["up","make","stand","to","there"];
+var q3=["out","figure","sell","loud","of"];
+var q4=["back","give","come","down","off"];
+var q5=["after","look","take","all","you"];
+var q6=["on","catch","try","my way","Tuesday"];
+var q7=["in","come","hand","charge","winter"];
+var ran;
+var temp;
+var ans;
+var q=[1,2,3,4,5,6,7]
+var n=0;
+var timer;
+var sec=localStorage.getItem("alltime");
+
+
+function time(){
+	timer=window.setInterval("st()",1000);
+}
+
+function st(){
+	sec++;
+	document.getElementById("cnt").innerHTML=sec;
+	localStorage.setItem("alltime",sec);
+}
+
+function que(){
+	for(var i = 0;i<7;i++){
+		ran =Math.floor(Math.random()*7)+1;
+		var t = q[i];
+		q[i]=q[ran];
+		q[ran]=t;
+	}
+	if (q[n]==1)
+		question1();
+	else if(q[n]==2)
+		question2();
+	else if(q[n]==3)
+		question3();
+	else if(q[n]==4)
+		question4();
+	else if(q[n]==5)
+		question5();
+	else if(q[n]==6)
+		question6();
+	else if(q[n]==7)
+		question7();
+}
+
+function que2(){
+	if (q[n]==1)
+		question1();
+	else if(q[n]==2)
+		question2();
+	else if(q[n]==3)
+		question3();
+	else if(q[n]==4)
+		question4();
+	else if(q[n]==5)
+		question5();
+	else if(q[n]==6)
+		question6();
+	else if(q[n]==7)
+		question7();
+}
+
+/*function ranque(){
+	ran =Math.floor(Math.random()*7)+1;
+	if(ran==temp)
+	{ranque();}
+	else{
+		if (ran==1)
+			question1();
+		else if(ran==2)
+			question2();
+		else if(ran==3)
+			question3();
+		else if(ran==4)
+			question4();
+		else if(ran==5)
+			question5();
+		else if(ran==6)
+			question6();
+		else if(ran==7)
+			question7();
+	}
+}*/
+
+function question1(){ 
+	var idn="w";
+	for(var i=1;i<=q1.length-1;i++){
+		document.getElementById(idn+i).innerHTML=q1[i];
+		document.getElementById(idn+i).style.fontSize=Number(50);
+	}
+	ans=q1[0];
+}
+
+function question2(){ 
+	var idn="w";
+	for(var i=1;i<=q2.length-1;i++){
+		document.getElementById(idn+i).innerHTML=q2[i];
+		document.getElementById(idn+i).style.fontSize=Number(50);
+	}
+	ans=q2[0];
+}
+
+function question3(){ 
+	var idn="w";
+	for(var i=1;i<=q3.length-1;i++){
+		document.getElementById(idn+i).innerHTML=q3[i];
+		document.getElementById(idn+i).style.fontSize=Number(50);
+	}
+	ans=q3[0];
+}
+
+function question4(){ 
+	var idn="w";
+	for(var i=1;i<=q4.length-1;i++){
+		document.getElementById(idn+i).innerHTML=q4[i];
+		document.getElementById(idn+i).style.fontSize=Number(50);
+	}
+	ans=q4[0];
+}
+
+function question5(){ 
+	var idn="w";
+	for(var i=1;i<=q5.length-1;i++){
+		document.getElementById(idn+i).innerHTML=q5[i];
+		document.getElementById(idn+i).style.fontSize=Number(50);
+	}
+	ans=q5[0];
+}
+
+function question6(){ 
+	var idn="w";
+	for(var i=1;i<=q6.length-1;i++){
+		document.getElementById(idn+i).innerHTML=q6[i];
+		document.getElementById(idn+i).style.fontSize=Number(50);
+	}
+	ans=q6[0];
+}
+
+function question7(){ 
+	var idn="w";
+	for(var i=1;i<=q7.length-1;i++){
+		document.getElementById(idn+i).innerHTML=q7[i];
+		document.getElementById(idn+i).style.fontSize=Number(50);
+	}
+	ans=q7[0];
+}
+
+function check(){
+	var feed="答錯了！";
+	document.getElementById('res').style.color="red";
+	var y=document.getElementById('in1').value;
+	if (q[n]==1){
+		if (y==q1[0])
+		{
+			feed="答對了！"
+			document.getElementById('res').style.color="green";
+		}
+	}
+	else if (q[n]==2){
+		if (y==q2[0])
+		{
+			feed="答對了！"
+			document.getElementById('res').style.color="green";
+		}
+	}
+	else if (q[n]==3){
+		if (y==q3[0])
+		{
+			feed="答對了！"
+			document.getElementById('res').style.color="green";
+		}
+	}
+	else if (q[n]==4){
+		if (y==q4[0])
+		{
+			feed="答對了！"
+			document.getElementById('res').style.color="green";
+		}
+	}
+	else if (q[n]==5){
+		if (y==q5[0])
+		{
+			feed="答對了！"
+			document.getElementById('res').style.color="green";
+		}
+	}
+	else if (q[n]==6){
+		if (y==q6[0])
+		{
+			feed="答對了！"
+			document.getElementById('res').style.color="green";
+		}
+	}
+	else if (q[n]==7){
+		if (y==q7[0])
+		{
+			feed="答對了！"
+			document.getElementById('res').style.color="green";
+		}
+	}
+	document.getElementById('res').innerHTML=feed;
+}
+
+/*function next(){
+	temp=ran;
+	document.getElementById('op').innerHTML='';
+	ranque();
+}*/
+
+function next(){
+	n++;
+	document.getElementById('op').innerHTML='';
+	if (n<7)
+		que2();
+	else{
+		document.getElementById('op2').style.color="purple";
+		document.getElementById('op2').style.fontSize=Number(50);
+		document.getElementById('op2').innerHTML="全部題目都寫完了！";
+	}
+}
+
+function show(){
+	document.getElementById('op').style.color="white";
+	document.getElementById('op').style.fontSize=Number(50);
+	document.getElementById('op').innerHTML=ans;
+}
+
+</script>
+
+<body bgcolor = "#E8FFF5" onload="que(); time(); read();">
+<nav class="navbar navbar-expand-lg navbar-light" style="background:#ACD6FF">
+	  <a class="navbar-brand" href="p1.html"><b>成語拼字遊戲</b></a>
+	  <button class="navbar-toggler" type="button" 
+	          data-toggle="collapse" data-target="#navbarNavDropdown" 
+	          aria-controls="navbarNavDropdown" aria-expanded="false" 
+			  aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		  <li>
+			<a class="nav-link" href="p1.html">首頁</a>
+		  </li>		  
+		  <li class="nav-item active">
+			<a class="nav-link" href="p2.html">字字珠璣<span class="sr-only">(current)</span></a>
+		  </li>
+		  <li>
+			<a class="nav-link" href="p3.html">PUZZLE</a>
+		  </li>	
+		  <li>
+			<a class="nav-link" href="p4.html">找單字</a>
+		  </li>	
+		  <li>
+			<a class="nav-link" href="p5.html">字母拼字</a>
+		  </li>	
+		</ul>			
+	  </div>
+</nav>
+<center>
+
+<font color = "#0000C6" size="7"><b>字字珠璣</b></font><hr>
+<table border=1>
+<tr>
+ <td bgcolor="#FFFFAA"><span id=w1></span></td>
+ <td bgcolor="#FFECF5"></td>
+ <td bgcolor="#FFFFAA"><span id=w2></span></td>
+</tr>
+<tr>
+ <td bgcolor="#FFECF5"></td>
+ <td bgcolor="#000000" width=50 height=50><span id=op></span></td>
+ <td bgcolor="#FFECF5"></td>
+</tr>
+<tr>
+ <td bgcolor="#FFFFAA"><span id=w3></span></td>
+ <td bgcolor="#FFECF5"></td>
+ <td bgcolor="#FFFFAA"><span id=w4></span></td>
+</tr></table>
+<br>
+答案: <input type=txt id='in1' size=12>
+<button onclick="check();">確定</button>
+<br>
+<span id=res></span>
+<br>
+<button onclick="show();">偷看答案</button>
+<br>
+
+<br><br>
+<button onclick="next();">下一題</button><br>
+<span id=op2></span>
+<br>
+<p>時間:<span id='cnt'></span>秒</p>
+<br><br>
+<a href="p1.html">回到首頁</a><br>
+
+</center>
+</body>
+</html>

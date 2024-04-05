@@ -1,0 +1,155 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>成語拼字遊戲-找單字</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> 
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+	button{
+		border-radius:10%;
+	}
+</style>
+<script>
+var ans=['teddy bear','car','doll','mummy','daddy','sister','brother','garden','bathroom','home','eye','type','rat','term','bike'];
+var response=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var timer;
+var sec=localStorage.getItem("alltime");
+
+
+function time(){
+	timer=window.setInterval("st()",1000);
+}
+
+function st(){
+	sec++;
+	document.getElementById("cnt").innerHTML=sec;
+	localStorage.setItem("alltime",sec);
+}
+
+function check1(){
+ var feed="答錯了!";
+ document.getElementById('res').style.color="red";
+ var y=document.getElementById('in1').value;
+ var c=0;
+ 
+ for(var i=0;i<=ans.length-1;i++){
+   if (ans[i]==y) {
+      if (response[i]==0) {
+             response[i]=1; 
+			 document.getElementById('res').style.color="green";
+             feed="答對了!"; }
+        else {
+			document.getElementById('res').style.color="navy";
+			feed="答過了!";
+			for(var j = 0;j<=ans.length-1;j++){
+				if(response[j]==0)
+					break;
+				else{
+					c++;
+					if(c==10){
+						document.getElementById('res').style.color="green";
+						feed="全都答對了!";
+					}
+				}
+			}
+		}
+		
+    break;
+	}
+ }
+   document.getElementById('res').innerHTML=feed;
+}
+
+function reset() {
+ for(var i=0;i<=response.length-1;i++) response[i]=0;
+ document.getElementById('res').innerHTML='';
+ document.getElementById('in1').value='';
+ document.getElementById('op').innerHTML='';
+}
+
+function showever(){
+var everw="";
+ for(var i=0;i<=response.length-1;i++)
+     if (response[i]==1) everw=everw+ans[i]+"<br>";
+ document.getElementById('write1').innerHTML=everw;
+}
+
+function show(){
+	document.getElementById('op').style.fontSize=Number(25);
+	document.getElementById('op').innerHTML="teddy bear,car,doll,mummy,daddy,sister,brother,\ngarden,bathroom,home,eye,type,rat,term,bike";
+}
+
+/*var canvas1=document.getElementById("myCanvas");
+var ctx = canvas1.getContext("2d");
+var img = new Image();
+img.src = 'findwords1.jpg';
+function showImage(){
+	ctx.beginPath();
+
+
+	ctx.drawImage(img,0,0);
+}*/
+
+</script>
+
+<body bgcolor = "#E8FFF5" onload="time();showImage();">
+<nav class="navbar navbar-expand-lg navbar-light" style="background:#ACD6FF">
+	  <a class="navbar-brand" href="p1.html"><b>成語拼字遊戲</b></a>
+	  <button class="navbar-toggler" type="button" 
+	          data-toggle="collapse" data-target="#navbarNavDropdown" 
+	          aria-controls="navbarNavDropdown" aria-expanded="false" 
+			  aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		  <li class="nav-item active">
+			<a class="nav-link" href="p1.html">首頁<span class="sr-only">(current)</span></a>
+		  </li>		  
+		  <li>
+			<a class="nav-link" href="p2.html">字字珠璣</a>
+		  </li>
+		  <li>
+			<a class="nav-link" href="p3.html">PUZZLE</a>
+		  </li>	
+		  <li>
+			<a class="nav-link" href="p4.html">找單字</a>
+		  </li>	
+		  <li>
+			<a class="nav-link" href="p5.html">字母拼字</a>
+		  </li>	
+		</ul>			
+	  </div>
+</nav>
+<center>
+<font color = "#0000C6" size="7"><b>找單字</b></font><hr>
+
+<!--<canvas id='myCanvas' width='500' height='500'>
+Your browser does not support the &lt; canvas &gt; element
+</canvas>-->
+
+<img src="findwords1.jpg">
+<br>
+找到了：<input type=txt id='in1' size=12 onkeyup="this.value = this.value.toLowerCase();"><button onclick="check1();">檢查一個答案</button>
+<button onclick="reset();">重置</button><br>
+<span id=res></span><br>
+<button onclick="show();">顯示所有答案</button><br>
+<span id=op></span><br>
+<hr>
+<button onclick="showever();">列出曾答過的答案：</button><br>
+<span id='write1'></span><br>
+<p>時間:<span id='cnt'></span>秒</p>
+<br>
+
+<a href="p1.html">回到首頁</a><br>
+
+
+</center>
+</body>
+</html>

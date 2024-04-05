@@ -1,0 +1,344 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>成語拼字遊戲-字母拼字</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> 
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+	button{
+		border-radius:10%;
+	}
+</style>
+<script>
+var q1=['T','E','N','D'];
+var ans1=['ten','net','tend','dent','den','end'];
+var q2=['B','A','E','R'];
+var ans2=['bare','bear','brae','are','bar','ear','bra','reb','era','be'];
+var q3=['L','I','N','K'];
+var ans3=['kiln','link','ilk','ink','kin','nil','in'];
+var qc=[1,2,3];
+var ran;
+var response=[0,0,0,0,0,0,0,0,0,0];
+var n=0;
+var timer;
+var sec=localStorage.getItem("alltime");
+
+
+function time(){
+	timer=window.setInterval("st()",1000);
+}
+
+function st(){
+	sec++;
+	document.getElementById("cnt").innerHTML=sec;
+	localStorage.setItem("alltime",sec);
+}
+
+function start(){
+	for(var i = 0;i<3;i++){
+		ran =Math.floor(Math.random()*3);
+		var t = qc[i];
+		qc[i]=qc[ran];
+		qc[ran]=t;
+	}
+	if (qc[n]==1)
+		question1();
+	else if(qc[n]==2)
+		question2();
+	else if(qc[n]==3)
+		question3();
+}
+
+function start2(){
+	if (qc[n]==1)
+		question1();
+	else if(qc[n]==2)
+		question2();
+	else if(qc[n]==3)
+		question3();
+}
+
+function question1(){
+	var idn='w';
+	for(var i=0;i<=3;i++){
+		document.getElementById(idn+i).style.fontSize=Number(75);
+		document.getElementById(idn+i).innerHTML=q1[i];
+	}
+}
+
+function question2(){
+	var idn='w';
+	for(var i=0;i<=3;i++){
+		document.getElementById(idn+i).style.fontSize=Number(75);
+		document.getElementById(idn+i).innerHTML=q2[i];
+	}
+}
+
+function question3(){
+	var idn='w';
+	for(var i=0;i<=3;i++){
+		document.getElementById(idn+i).style.fontSize=Number(75);
+		document.getElementById(idn+i).innerHTML=q3[i];
+	}
+}
+
+function check(){
+	if (qc[n]==1)
+		check1();
+	else if(qc[n]==2)
+		check2();
+	else if(qc[n]==3)
+		check3();
+}
+
+function check1(){
+	var feed="答錯或是答案未收錄";
+	document.getElementById('res').style.color="red";
+	var y=document.getElementById('in1').value;
+	var c=0;
+	
+	for(var i=0;i<=ans1.length-1;i++){
+		if (ans1[i]==y) {
+			if (response[i]==0) {
+				response[i]=1; 
+				document.getElementById('res').style.color="green";
+				feed="答對了!"; }
+			else {
+				document.getElementById('res').style.color="navy";
+				feed="答過了!";
+				for(var j = 0;j<=ans1.length-1;j++){
+					if(response[j]==0){
+						break;
+					}
+					else{
+						c++;
+						if(c==6){
+							document.getElementById('res').style.color="green";
+							feed="全都答對了!";
+						}
+					}	
+				}	
+			}			
+        break;
+		}
+	}
+		document.getElementById('res').innerHTML=feed;
+}
+
+function check2(){
+	var feed="答錯或是答案未收錄";
+	document.getElementById('res').style.color="red";
+	var y=document.getElementById('in1').value;
+	var c=0;
+	
+	for(var i=0;i<=ans2.length-1;i++){
+		if (ans2[i]==y) {
+			if (response[i]==0) {
+				response[i]=1; 
+				document.getElementById('res').style.color="green";
+				feed="答對了!"; }
+			else {
+				document.getElementById('res').style.color="navy";
+				feed="答過了!";
+				for(var j = 0;j<=ans2.length-1;j++){
+					if(response[j]==0){
+						break;
+					}
+					else{
+						c++;
+						if(c==ans2.length){
+							document.getElementById('res').style.color="green";
+							feed="全都答對了!";
+						}
+					}	
+				}	
+			}			
+        break;
+		}
+	}
+		document.getElementById('res').innerHTML=feed;
+}
+
+function check3(){
+	var feed="答錯或是答案未收錄";
+	document.getElementById('res').style.color="red";
+	var y=document.getElementById('in1').value;
+	var c=0;
+	
+	for(var i=0;i<=ans3.length-1;i++){
+		if (ans3[i]==y) {
+			if (response[i]==0) {
+				response[i]=1; 
+				document.getElementById('res').style.color="green";
+				feed="答對了!"; }
+			else {
+				document.getElementById('res').style.color="navy";
+				feed="答過了!";
+				for(var j = 0;j<=ans3.length-1;j++){
+					if(response[j]==0){
+						break;
+					}
+					else{
+						c++;
+						if(c==ans3.length){
+							document.getElementById('res').style.color="green";
+							feed="全都答對了!";
+						}
+					}	
+				}	
+			}			
+        break;
+		}
+	}
+		document.getElementById('res').innerHTML=feed;
+}
+
+function show(){
+	if (qc[n]==1)
+		show1();
+	else if(qc[n]==2)
+		show2();
+	else if(qc[n]==3)
+		show3();
+}
+
+function show1(){
+	document.getElementById('op').style.fontSize=Number(25);
+	for(var i = 0;i<ans1.length-1;i++)
+	{
+		document.getElementById('op').innerHTML+=ans1[i]+',';
+	}
+	document.getElementById('op').innerHTML+=ans1[ans1.length-1];
+	document.getElementById('s').disabled=true;
+}
+
+function show2(){
+	document.getElementById('op').style.fontSize=Number(25);
+	for(var i = 0;i<ans2.length-1;i++)
+	{
+		document.getElementById('op').innerHTML+=ans2[i]+',';
+	}
+	document.getElementById('op').innerHTML+=ans2[ans2.length-1];
+	document.getElementById('s').disabled=true;
+}
+
+function show3(){
+	document.getElementById('op').style.fontSize=Number(25);
+	for(var i = 0;i<ans3.length-1;i++)
+	{
+		document.getElementById('op').innerHTML+=ans3[i]+',';
+	}
+	document.getElementById('op').innerHTML+=ans3[ans3.length-1];
+	document.getElementById('s').disabled=true;
+}
+
+function showever(){
+	var everw="";
+	
+	if (qc[n]==1){
+		for(var i=0;i<=ans1.length-1;i++){
+			if (response[i]==1) 
+				everw=everw+ans1[i]+"<br>";
+		}
+	}
+	else if(qc[n]==2){
+		for(var i=0;i<=ans2.length-1;i++){
+			if (response[i]==1) 
+				everw=everw+ans2[i]+"<br>";
+		}
+	}
+	else if(qc[n]==3){
+		for(var i=0;i<=ans3.length-1;i++){
+			if (response[i]==1) 
+				everw=everw+ans3[i]+"<br>";
+		}
+	}
+	document.getElementById('write1').innerHTML=everw;
+}
+
+function next(){
+	n++;
+	response=[0,0,0,0,0,0,0,0,0,0];
+	document.getElementById('res').innerHTML='';
+	document.getElementById('s').disabled=false;
+	document.getElementById('op').innerHTML='';
+	document.getElementById('write1').innerHTML='';
+	if (n<3)
+		start2();
+	else{
+		document.getElementById('op2').style.color="purple";
+		document.getElementById('op2').style.fontSize=Number(50);
+		document.getElementById('op2').innerHTML="全部題目都寫完了！";
+		document.getElementById('bn').disabled=true;
+	}
+}
+
+</script>
+
+<body bgcolor = "#E8FFF5" onload="start(); time();">
+<nav class="navbar navbar-expand-lg navbar-light" style="background:#ACD6FF">
+	  <a class="navbar-brand" href="p1.html"><b>成語拼字遊戲</b></a>
+	  <button class="navbar-toggler" type="button" 
+	          data-toggle="collapse" data-target="#navbarNavDropdown" 
+	          aria-controls="navbarNavDropdown" aria-expanded="false" 
+			  aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		  <li class="nav-item active">
+			<a class="nav-link" href="p1.html">首頁<span class="sr-only">(current)</span></a>
+		  </li>		  
+		  <li>
+			<a class="nav-link" href="p2.html">字字珠璣</a>
+		  </li>
+		  <li>
+			<a class="nav-link" href="p3.html">PUZZLE</a>
+		  </li>	
+		  <li>
+			<a class="nav-link" href="p4.html">找單字</a>
+		  </li>	
+		  <li>
+			<a class="nav-link" href="p5.html">字母拼字</a>
+		  </li>	
+		</ul>			
+	  </div>
+</nav>
+<center>
+<font color = "#0000C6" size="7"><b>字母拼字</b></font><br>
+<font color = "#AE00AE" size='4'><b>字母不重複</b></font><hr>
+<table border=5 width=200 height=150>
+<tr>
+ <td><p align='center'><span id=w0></span></p></td>
+ <td><p align='center'><span id=w1></span></p></td>
+</tr>
+<tr>
+ <td><p align='center'><span id=w2></span></p></td>
+ <td><p align='center'><span id=w3></span></p></td>
+</tr> </table>
+
+<input type=txt id='in1' size=12 onkeyup="this.value = this.value.toLowerCase();">
+<button onclick="check();">檢查一個答案</button>
+<button onclick="next();" id='bn'>下一題</button><br>
+<span id=res></span><br>
+<span id=op2></span><br>
+<button onclick="show();" id='s'>顯示所有答案</button><br>
+<span id=op></span><br>
+<hr>
+<button onclick="showever();">列出曾答過的答案：</button><br>
+<span id='write1'></span><br>
+<p>時間:<span id='cnt'></span>秒</p>
+<br>
+
+<a href="p1.html">回到首頁</a><br>
+
+
+</center>
+</body>
+</html>
